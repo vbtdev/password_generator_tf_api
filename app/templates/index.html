@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templo da Fé</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-image: url('../templates/imagens/img.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 10.0;
+            margin-top: 70px;
+        }
+        #container {
+            opacity: 1; /* Keep the container and its contents opaque */
+        }
+        #password {
+            font-weight: bold;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="container" class="container">
+<!--        <h1 class="text-center mb-5">Templo da Fé</h1>-->
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary btn-block" id="generate-password" onclick="hideButton()">Gerar Senha</button>
+                        <br>
+                        <div id="password" class="alert alert-success text-center" role="alert" style="display:none;"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('generate-password').addEventListener('click', function() {
+            const length = Math.floor(Math.random() * 6) + 5;
+            const password = generatePassword(length);
+            document.getElementById('password').textContent = password;
+            document.getElementById('password').style.display = 'block';
+        });
+
+        function generatePassword(length) {
+            let password = '';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            for (let i = 0; i < length; i++) {
+                password += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return password;
+        }
+
+        function hideButton() {
+            document.getElementById('generate-password').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
